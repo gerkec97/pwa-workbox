@@ -17,12 +17,15 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
     <style media="screen">
+      #camera.withphoto {
+        color: transparent !important;
+        background-size: cover;
+      }
       #toast-container {
         top: 0;
         left: 0;
         width: 100%;
       }
-
       #toast-container > div {
         opacity: 1;
         box-shadow: 0 0 2rem rgba(0, 0, 0, 0.75);
@@ -30,6 +33,7 @@
         width: 100%;
       }
     </style>
+
   </head>
   <body class="bg-info">
 
@@ -60,7 +64,7 @@
         <div class="modal-content bg-dark">
           <div class="modal-body p-1 text-center">
 
-            <video id="player" autoplay class="w-100 rounded bg-white" style="height:300px;"></video>
+            <video id="player" autoplay class="w-100 rounded"></video>
             <button data-dismiss="modal" type="button" id="shutter" class="fas fa-circle fa-3x rounded-circle bg-white text-danger p-1 my-2"></button>
 
           </div>
@@ -78,19 +82,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"
       integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ=="
       crossorigin="anonymous"></script>
-    <script src="./main.js"></script>
+    <script src="/Classes/Camera.js"></script>
+    <script src="/main.js"></script>
 
+    <!-- Init App if Supported -->
     <script>
+
       // Check compatibillity
-      if ('mediaDevices' in navigator) {
+      if ( 'mediaDevices' in navigator ) {
 
         // Init App
         _init();
 
       } else {
         // Show notification
-        toastr.error(null, 'This app is not supported by your browser.', { timeout: 30000 });
+        toastr.error( null, 'This app is not supported by your browser.', {timeout: 30000});
       }
+
     </script>
+
   </body>
 </html>

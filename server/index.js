@@ -9,6 +9,7 @@ const server = http.Server(app);
 
 // Server "app" directory
 app.use(express.static(`${__dirname}/../app`));
+app.use('/Classes', express.static(`${__dirname}/../Classes`));
 
 // Start Server
 server.listen( 8000, () => console.log('Photo Message running on localhost:8000'));
