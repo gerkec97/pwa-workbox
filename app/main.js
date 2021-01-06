@@ -38,8 +38,7 @@ const _init = () => {
       return;
     }
 
-    console.log('adding message');
-    console.log(caption);
+    renderMessage({photo: camera.photo, caption})
 
     // Reset caption & photo on success
     $('#caption').val('');
@@ -48,3 +47,22 @@ const _init = () => {
 
   });
 };
+
+const renderMessage = (message) => {
+  let msgHTML = `
+  <div style="display:none" class="row message bg-light mb-2 rounded shadow">
+    <div class="col-2 p-1">
+      <img src="${message.photo}" class="photo w-100 rounded"/>
+    </div>
+    <div class="col-10 p-1">${message.caption}</div>
+  </div>
+  `
+
+  $(msgHTML).prependTo('#messages').show(500).find('img').on('click', showPhoto)
+}
+
+const showPhoto = (e) => {
+  let photoSrc = $(e.currentTarget).attr('src')
+  $('#photoframe img').attr('src', photoSrc)
+  $('#photoframe').modal('show')
+}
