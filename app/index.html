@@ -93,7 +93,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"
       integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ=="
       crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/Classes/Camera.js"></script>
+    <script src="/Classes/Message.js"></script>
     <script src="/main.js"></script>
 
     <!-- Init App if Supported -->
@@ -104,6 +106,11 @@
 
         // Init App
         _init();
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+          })
+        }
 
       } else {
         // Show notification
